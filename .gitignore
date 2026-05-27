@@ -1,0 +1,12 @@
+# Rust/Cargo build artifacts
+target/
+
+# Zed extension compiled output
+*.wasm
+
+# OS
+.DS_Store
+Thumbs.db
+
+#test file (.rpy)
+*.rpy

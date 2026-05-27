@@ -1,0 +1,4 @@
+name = "Ren'Py"
+grammar = "renpy"
+path_suffixes = ["rpy", "rpyc", "rpym", "rpymc"]
+line_comments = ["# "]
