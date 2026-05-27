@@ -1,6 +1,7 @@
 # zed-renpy-extension
 > [!NOTE]
 > Current version: v0.1.0 | Grammar Repository: [zeynthedev/tree-sitter-renpy](https://github.com/ZeynTheDev/tree-sitter-renpy) | [Full Changelog](changelog.md)
+
 An approach to rewrite Ren'Py's Visual Studio Code extension to a Zed extension.
 
 ## How To Test It?
