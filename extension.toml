@@ -1,6 +1,6 @@
 id = "renpy"
 name = "Ren'Py"
-version = "0.1.0"
+version = "0.2.0"
 schema_version = 1
 authors = ["ZeynTheDev"]
 description = "Ren'Py language support for Zed"
@@ -8,4 +8,4 @@ repository = "https://github.com/ZeynTheDev/zed-renpy-extension"
 
 [grammars.renpy]
 repository = "https://github.com/ZeynTheDev/tree-sitter-renpy"
-rev = "18c90be0c71f3f31e4a3d43e687bc6376365e0e9"
+rev = "daa8c1a9b2b1b85f2b9c12b3cc0f0fe223474b82"

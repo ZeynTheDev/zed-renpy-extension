@@ -1,4 +1,5 @@
 (label_statement ":" @indent)
 (menu_statement ":" @indent)
+(menu_choice ":" @indent)
 (python_block ":" @indent)
 (init_statement ":" @indent)
