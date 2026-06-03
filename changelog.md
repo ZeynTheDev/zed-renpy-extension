@@ -1,11 +1,24 @@
 # Changelog
 
 >[!NOTE]
-> Current Version: 0.2.0
+> Current Version: 0.3.0
 
 ## Table of Contents
 
-[v0.2.0](#v020---python-injection--advanced-block-parsing) | [v0.1.0](#v010---initial-release)
+[v0.3.0](#v030---the-minimalist-flow-update) | [v0.2.0](#v020---python-injection--advanced-block-parsing) | [v0.1.0](#v010---initial-release)
+
+## v0.3.0 - The Minimalist Flow Update
+### Added
+- **Updated Grammar Engine:** Pulled the latest `tree-sitter-renpy` (v0.3.0) parser.
+- **New Syntax Highlighting:**
+  - Added highlights for variable declarations (`define`, `default`).
+  - Added highlights for audio control statements (`play`, `stop`, `queue`) and their inline modifiers (`fadein`, `fadeout`, `volume`, `loop`, `noloop`).
+  - Added highlights for transition statements (`with` and `None`).
+  - Improved handling and coloring for namespaced variables (e.g., `audio.track_name`).
+
+### Known Issues
+- GUI and layout blocks are not yet parsed (`screen`, `style`, `transform`, `image`).
+- **Partial Syntax Coverage:** The grammar currently covers the core visual novel flow but does not yet cover the entirety of the [official Ren'Py documentation](https://www.renpy.org/doc/html/). Full syntax support will be implemented in incremental phases.
 
 ## v0.2.0 - Python Injection & Advanced Block Parsing
 

@@ -1,44 +1,82 @@
 # zed-renpy-extension
 > [!NOTE]
-> Current version: v0.2.0 | Grammar Repository: [zeynthedev/tree-sitter-renpy](https://github.com/ZeynTheDev/tree-sitter-renpy) | [Full Changelog](changelog.md)
+> Current version: v0.3.0 | Grammar Repository: [zeynthedev/tree-sitter-renpy](https://github.com/ZeynTheDev/tree-sitter-renpy) | [Full Changelog](changelog.md)
 
 An approach to rewrite Ren'Py's Visual Studio Code extension to a Zed extension.
 
+## Usage
+This repository provides a Zed extension that enriches the Ren'Py programming experience. If you are looking for the Tree-sitter grammar engine utilized by this extension, please visit:
+[tree-sitter-renpy](https://github.com/ZeynTheDev/tree-sitter-renpy).
+
+## Development
+To test it locally:
+1. Download the repository as `.zip`.
+2. Extract the folder and load it into Zed as a local extension.
+
 ## How To Test It?
-Try make a simple Ren'Py file (`.rpy`) then write it down:
+
 ```
-# This is a comment
+# This is a top-level comment
 init python:
     some_var = True
 
+    # Comment on python block
+    another_var = False
+
+default loop_cycle = 1
+define realm = "Lost Midgard"
+define mc = Character("Zeyn")
+define audio.sunflower = "my-music/sunflower.ogg"
+
 label start:
-    "Hello world."
+    play music "rewind_theme.ogg" fadein 2.0 loop volume 0.5
+
+    python:
+        # A standalone python block
+        player_hp = 100
+        is_game_over = False
+
+    "Hello world." # an inline comment
+    play sound "combo_break.wav"
     e "Hello from eileen."
-    scene bg_room
-    show eileen_happy
-    hide eileen
-    $ some_variable = True
+
+    stop music fadeout 1.0
+    queue music "calm_bgm.ogg"
+    scene bg_room night
+    with fade
+    show eileen happy
+    with dissolve
+    show eileen happy at right
+    hide eileen happy
+    with None
+    $ some_variable = True # an inline comment on python line
     pause 1.0
     menu:
         "Option A":
             jump label_a
         "Option B":
-            jump label_b
+            menu:
+                "Nested Option":
+                    jump label_b
     jump another_label
     call some_label
     return
 ```
-It should look exactly like the screenshot below:
-![Current Snapshot of Extension Scale Limitation](asset/currentv0.2.0.png)
+
+It should look exactly like the screenshot below (some differences may occur due to different Zed themes):  
+![Current Snapshot of Extension Scale Limitation](asset/currentv0.3.0.png)
 
 ## Current Extension Scale
-This extension is currently capable of providing syntax highlighting and structural indentation for the core elements of Ren'Py visual novels. As of v0.2.0, it reliably supports:
+This extension is currently capable of providing syntax highlighting and structural indentation for the core elements of Ren'Py visual novels.
 
-- **Story Flow & Dialogue:** Syntax highlighting for `label`, `jump`, `call`, `return`, `pause`, and narrator/character `say` statements.
-- **Visual Management:** Parsing for `scene`, `show`, and `hide` statements, including support for multi-word image identifiers and transform properties (e.g., `at right`).
-- **Native Python Injection:** Embedded Python blocks (`python:`, `init python:`) and inline Python lines `($`) are fully injected with Zed's native Python syntax highlighting.
-- **Deep Block Nesting:** Accurate indent-based parsing for multi-level `menu` choices and embedded logic.
-- **Smart Editor Tooling:** Auto-indentation triggers upon pressing enter after colons (`:`) in labels, menus, and Python blocks.
+| Category  | Supported Elements  | Description |
+|-----------|---------------------|-------------|
+| Story Flow  | `label`, `jump`, `call`, `return`, `pause`, `menu`, `say` | Core narration, branching, and deep block nesting for choices. |
+| Visual Management  | `scene`, `show`, `hide`, `with`  | Backgrounds, sprites, transforms (`at`), and transitions (`None`). |
+| Audio Controls  | `play`, `stop`, `queue` |Music/sound management with inline modifiers (e.g., `fadein`, `loop`).|
+| State & Data  | `define`, `default`  | Variable and character declarations, including namespace dot-notation.|
+| Python Integration  | `python:`, `init python:`, `$`  | Full native Python syntax injection via Zed. |
+| Editor Tooling  | Auto-indentation  | Smart indentation triggers after colons (`:`) in blocks.  | 
 
 ## Changelog
 ### Added
@@ -49,15 +87,9 @@ This extension is currently capable of providing syntax highlighting and structu
 - Keyword highlighting for the `python` keyword in `init python` statements.
 - Auto-indentation support for nested `menu_choice` blocks.
 
-### Fixed
-- Updated underlying [tree-sitter-renpy](https://github.com/ZeynTheDev/tree-sitter-renpy) to v0.2.0, which introduces a custom C scanner for robust indent/dedent handling.
-- Menu blocks and their contents are no longer opaque; nested statements inside menus are now structurally parsed and indented correctly.
-
-### Known Limitations (Planned for v0.3.0)
-- Missing syntax highlighting for variable declaration statements (`define`, `default`).
-- Missing syntax highlighting for audio control statements (`play`, `stop`, `queue`).
-- GUI and layout blocks (`screen`, `style`, `transform`, `image`) are not yet parsed or highlighted.
-- Transition statements (`with`) are not yet explicitly mapped.
+### Known Issues
+- GUI and layout blocks are not yet parsed (`screen`, `style`, `transform`, `image`).
+- **Partial Syntax Coverage:** The extension currently covers the core visual novel flow but does not yet cover the entirety of the [official Ren'Py documentation](https://www.renpy.org/doc/html/). Full syntax support will be implemented in incremental phases.
 
 ---------------
 > [!NOTE]

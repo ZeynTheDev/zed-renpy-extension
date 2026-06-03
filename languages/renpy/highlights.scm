@@ -42,3 +42,25 @@
 ; Image names and Transform propertion
 (image_name (identifier) @string.special)
 (transform_property (identifier) @constant)
+
+
+; Variables and Data
+(define_statement "define" @keyword)
+(default_statement "default" @keyword)
+
+; Audio Control
+(play_statement "play" @keyword)
+(stop_statement "stop" @keyword)
+(queue_statement "queue" @keyword)
+
+; Audio Modifier
+"fadein" @keyword.modifier
+"fadeout" @keyword.modifier
+"volume" @keyword.modifier
+"loop" @keyword.modifier
+"noloop" @keyword.modifier
+
+; Transition
+(with_statement "with" @keyword)
+(with_statement transition: (dotted_name) @property)
+"None" @constant.builtin
